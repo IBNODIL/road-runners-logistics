@@ -1,0 +1,112 @@
+[
+ {
+  "cat": "General",
+  "items": [
+   {
+    "q": "What logistics services does Road Runners Logistics SIA provide?",
+    "a": "Road Runners Logistics SIA provides road, air, and ocean freight services along with warehousing, customs clearance, and supply chain support. We coordinate these services around your shipment requirements, helping businesses manage transportation and logistics through one connected partner."
+   },
+   {
+    "q": "Which countries does Road Runners Logistics SIA serve?",
+    "a": "We provide comprehensive logistics services across North America, Europe, Asia, and Australia. Our extensive partner network allows us to coordinate freight to and from major global markets."
+   },
+   {
+    "q": "What types of businesses do you work with?",
+    "a": "We work with businesses of all sizes, from small startups to large enterprises. Our solutions are tailored for industries such as retail, manufacturing, e-commerce, and healthcare."
+   },
+   {
+    "q": "How do I get started with Road Runners Logistics SIA?",
+    "a": "Getting started is simple. Just reach out to our team via our contact form or give us a call. We will discuss your specific shipping needs and set up your account."
+   }
+  ]
+ },
+ {
+  "cat": "Shipping",
+  "items": [
+   {
+    "q": "How can I request a quote?",
+    "a": "You can request a quote by filling out the form on our website or emailing our sales team directly. Please provide as much detail about your shipment as possible for an accurate estimate."
+   },
+   {
+    "q": "What information do you need for a shipment?",
+    "a": "To provide an accurate quote and arrange transport, we need the origin and destination addresses, cargo dimensions, total weight, and whether the goods are hazardous or temperature-sensitive."
+   },
+   {
+    "q": "Can you handle time-sensitive shipments?",
+    "a": "Yes, we specialize in time-critical logistics. We offer expedited air freight and dedicated ground transport to ensure your urgent shipments arrive on schedule."
+   },
+   {
+    "q": "Can I track my shipment?",
+    "a": "Absolutely. Once your shipment is booked, we provide a tracking number so you can monitor its progress in real-time through our online portal."
+   }
+  ]
+ },
+ {
+  "cat": "Freight",
+  "items": [
+   {
+    "q": "What types of freight do you transport?",
+    "a": "We transport a wide range of freight, including general cargo, palletized goods, temperature-sensitive items, and hazardous materials (with proper documentation). Our solutions are tailored to both standard and specialized shipping needs."
+   },
+   {
+    "q": "Do you provide road freight?",
+    "a": "Yes, we provide road freight across city, regional and international routes, with flexible transport options that fit your schedule."
+   },
+   {
+    "q": "Do you provide air and ocean freight?",
+    "a": "Yes, we provide both air and ocean freight services. Air freight is ideal for urgent, time-sensitive shipments, while ocean freight (FCL and LCL) offers a cost-effective solution for larger, less time-critical cargo."
+   }
+  ]
+ },
+ {
+  "cat": "Warehousing",
+  "items": [
+   {
+    "q": "Do you provide warehousing?",
+    "a": "Yes, we offer secure, strategically located warehousing facilities. We provide short-term and long-term storage solutions to fit your inventory needs."
+   },
+   {
+    "q": "Can warehousing be combined with transportation?",
+    "a": "Yes, our services are fully integrated. We can store your goods and seamlessly coordinate the transportation to their final destination when you are ready."
+   },
+   {
+    "q": "Can you support distribution from your warehouses?",
+    "a": "Yes, we provide full distribution support. We can manage inventory, pick, pack, and ship your orders directly from our warehouses to your customers."
+   }
+  ]
+ },
+ {
+  "cat": "International Shipping",
+  "items": [
+   {
+    "q": "How long does international shipping take?",
+    "a": "Transit times vary by destination and mode of transport. Air freight typically takes 3-8 days, while ocean freight can take 2-6 weeks. We will provide a precise estimate when quoting."
+   },
+   {
+    "q": "Do you handle customs clearance?",
+    "a": "Yes, we handle all aspects of customs clearance. Our experienced team ensures all necessary documentation is correct to prevent delays at the border."
+   },
+   {
+    "q": "What documents are required for international shipping?",
+    "a": "Typically, you will need a commercial invoice, packing list, bill of lading, and a certificate of origin. We will guide you through any additional country-specific requirements."
+   }
+  ]
+ },
+ {
+  "cat": "Quotes",
+  "items": [
+   {
+    "q": "How are shipping costs calculated?",
+    "a": "Shipping costs are based on the weight, dimensions, and type of cargo, as well as the origin, destination, and speed of delivery. Additional fees may apply for customs or special handling."
+   },
+   {
+    "q": "How quickly will I receive a quote?",
+    "a": "We strive to provide all standard quotes within 24 business hours. For complex or specialized shipments, it may take slightly longer to ensure accuracy."
+   },
+   {
+    "q": "Can I request a quote for multiple shipments?",
+    "a": "Yes, we can provide quotes for multiple or recurring shipments. Please provide the details for all the routes you are considering, and we will create a tailored pricing plan."
+   }
+  ]
+ }
+]
