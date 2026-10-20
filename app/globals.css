@@ -72,6 +72,12 @@ body {
 .link-roll:hover > span:first-child { transform: translateY(-110%); }
 .link-roll:hover > span + span { transform: translateY(0); }
 
+/* underline-style form fields (contact page) */
+.line-form input, .line-form textarea, .line-form select { border-width: 0 0 1px 0; border-radius: 0; background: transparent; padding-left: 0; padding-right: 0; border-color: rgba(29,34,40,.18); }
+.line-form input:focus, .line-form textarea:focus, .line-form select:focus { border-color: #1d2228; }
+.line-form [aria-invalid="true"] { border-color: #dc2626; }
+.line-form textarea { min-height: 70px; }
+
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
