@@ -94,7 +94,7 @@ export function CtaBanner({ title = "Your cargo is on the road with us", text = 
       <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 47%)" }} />
       <div className="relative flex h-full flex-col justify-end px-[var(--pad)] pb-[100px] max-[809px]:pb-14">
         <SplitWords as="h2" className="h-mega w-[698px] max-w-full" text={title} stagger={0.06} />
-        <Reveal delay={0.1}><p className="p20 mt-5 w-[384px] max-w-full">{text}</p></Reveal>
+        {text ? <Reveal delay={0.1}><p className="p20 mt-5 w-[384px] max-w-full">{text}</p></Reveal> : null}
         <Reveal delay={0.2} className="mt-10"><Button href="/request-a-quote">Request a Quote</Button></Reveal>
       </div>
     </section>

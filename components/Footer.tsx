@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import Button from "./Button";
-import { contact, services } from "@/lib/site";
+import { contact, services, LOGO_LIGHT } from "@/lib/site";
 import { Reveal } from "./motion";
 
 const company = [
@@ -31,43 +32,44 @@ export default function Footer() {
   return (
     <footer className="overflow-hidden bg-night text-white">
       <div className="wrap pb-16 pt-[216px] max-[809px]:pt-24">
-        <div className="grid grid-cols-3 gap-10 max-[809px]:grid-cols-1">
+        <div className="grid grid-cols-3 gap-10 border-b border-white/10 pb-10 max-[809px]:grid-cols-1">
           <Reveal>
             <p className="label mb-4 text-sun">Email</p>
-            <a href={`mailto:${contact.email}`} className="h6 break-all">{contact.email}</a>
+            <a href={`mailto:${contact.email}`} className="h5 break-all !text-[28px] !leading-[36px]">{contact.email}</a>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="label mb-4 text-sun">Business Hours</p>
-            <p className="h6">{contact.hours}</p>
+            <p className="h5 !text-[28px] !leading-[36px]">{contact.hours}</p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="label mb-4 text-sun">Head Office</p>
-            <a href={contact.map} target="_blank" rel="noreferrer" className="h6">{contact.address}</a>
+            <a href={contact.map} target="_blank" rel="noreferrer" className="h5 !text-[28px] !leading-[36px]">{contact.address}</a>
           </Reveal>
         </div>
 
-        <div className="mt-[140px] grid grid-cols-[340px_1fr] gap-10 max-[1000px]:grid-cols-1 max-[809px]:mt-16">
+        <div className="mt-[70px] grid grid-cols-[340px_1fr] gap-10 max-[1000px]:grid-cols-1 max-[809px]:mt-16">
           <div>
-            <p className="mb-8 max-w-[308px]">We deliver your cargo across borders with reliable planning, experienced teams and a trusted partner network.</p>
+            <Image src={LOGO_LIGHT} alt="Road Runners Logistics SIA" width={200} height={43} className="mb-8 ml-9 h-auto w-[200px]" />
+            <p className="mb-8 max-w-[308px]">We deliver your cargo across borders — reliably and on time.</p>
             <Button href="/request-a-quote" variant="white" size="md">Request a Quote</Button>
           </div>
-          <div className="grid grid-cols-3 gap-10 min-[1000px]:pl-[205px] max-[809px]:grid-cols-1">
+          <div className="grid grid-cols-3 gap-10 min-[1000px]:pl-[205px] max-[809px]:grid-cols-1 min-[1000px]:[&>div:last-child]:justify-self-end">
             <div>
               <p className="label mb-6 text-sun">Company</p>
-              <div className="flex flex-col gap-3">{company.map(([t, h]) => <Roll key={t} href={h}>{t}</Roll>)}</div>
+              <div className="flex flex-col gap-6">{company.map(([t, h]) => <Roll key={t} href={h}>{t}</Roll>)}</div>
             </div>
             <div>
               <p className="label mb-6 text-sun">Services</p>
-              <div className="flex flex-col gap-3">{services.map((s) => <Roll key={s.slug} href={`/services/${s.slug}`}>{s.title}</Roll>)}</div>
+              <div className="flex flex-col gap-6">{services.map((s) => <Roll key={s.slug} href={`/services/${s.slug}`}>{s.title}</Roll>)}</div>
             </div>
             <div>
               <p className="label mb-6 text-sun">Resources</p>
-              <div className="flex flex-col gap-3">{resources.map(([t, h]) => <Roll key={t} href={h}>{t}</Roll>)}</div>
+              <div className="flex flex-col gap-6">{resources.map(([t, h]) => <Roll key={t} href={h}>{t}</Roll>)}</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-[90px] flex items-center gap-5 text-[16px]">
+        <div className="mt-[70px] flex items-center gap-5 border-t border-white/10 pt-9 text-[16px]">
           <span>© 2026 Road Runners Logistics SIA. All rights reserved.</span>
           <span className="h-4 w-px bg-white/15" />
         </div>
