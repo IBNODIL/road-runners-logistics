@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, animate, motion, useInView, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import Button from "../Button";
 import { Reveal, SplitWords, Counter, ease } from "../motion";
 import { img } from "@/lib/site";
@@ -15,18 +15,18 @@ const stats = [
 
 export function Business() {
   const ref = useRef<HTMLDivElement>(null);
-  // Truck drives in from the right, parks while the section is on screen, then leaves to the left.
+  // Truck starts right-of-centre, drives to left-of-centre and parks, then leaves to the left.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const x = useTransform(scrollYProgress, [0, 0.4, 0.62, 1], ["70vw", "0vw", "0vw", "-80vw"]);
+  const x = useTransform(scrollYProgress, [0.1, 0.45, 0.68, 1], ["34vw", "0vw", "0vw", "-80vw"]);
   return (
     <section className="relative overflow-hidden px-[var(--pad)] py-[150px] max-[809px]:py-20">
       <SplitWords as="h2" className="h2 relative z-10 w-[445px] max-w-full" text="Logistics That Keeps Your Business Moving" />
-      <div ref={ref} className="relative mt-0 flex justify-start pl-[18px] max-[809px]:pl-0">
+      <div ref={ref} className="relative mt-[140px] flex justify-start pl-[18px] max-[1000px]:mt-12 max-[809px]:pl-0">
         <motion.div style={{ x }} className="relative aspect-[1736/906] w-[1009px] max-w-full will-change-transform">
           <Image src={img("URcznmc9y0aJJhWoQOxna5c5k.png")} alt="Truck" fill sizes="1009px" className="object-contain" />
         </motion.div>
       </div>
-      <div className="flex justify-end max-[1000px]:mt-8">
+      <div className="mt-[40px] flex justify-end max-[1000px]:mt-8">
         <div className="w-[586px] max-w-full">
           <Reveal>
             <p>A late delivery affects production. A missed trip can break a promise made to a client. The right logistics partner doesn&apos;t just move freight — it moves your entire operation forward.</p>
@@ -106,7 +106,14 @@ export function Experience() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const angle = useTransform(scrollYProgress, [0.2, 0.8], [90, 450]);
+  // The yellow dot circles once when the section first appears, then rests at the bottom.
+  const angle = useMotionValue(90);
+  const seen = useInView(ref, { once: true, amount: 0.35 });
+  useEffect(() => {
+    if (!seen) return;
+    const c = animate(angle, 450, { duration: 3.2, ease: [0.65, 0, 0.35, 1] });
+    return () => c.stop();
+  }, [seen]); // eslint-disable-line react-hooks/exhaustive-deps
   const dotX = useTransform(angle, (a) => 175 + 175 * Math.cos((a * Math.PI) / 180));
   const dotY = useTransform(angle, (a) => 175 + 175 * Math.sin((a * Math.PI) / 180));
   return (

@@ -39,16 +39,16 @@ export function Testimonials() {
         </div>
         <div className="flex justify-end gap-0 pt-[25px] max-[1000px]:justify-start">
           {people.map((p, i) => (
-            <button key={p.name} onClick={() => setA(i)} aria-label={p.name} className="relative h-[150px] w-[150px] overflow-hidden rounded-full transition-all duration-500" style={{ opacity: a === i ? 1 : 0.45, transform: `scale(${a === i ? 1 : 0.9})` }}>
-              <Image src={img(p.img)} alt={p.name} fill sizes="150px" className="object-cover" />
+            <button key={p.name} onClick={() => setA(i)} aria-label={p.name} className="relative h-[150px] w-[150px] cursor-pointer overflow-hidden rounded-full transition-all duration-500 hover:scale-105" style={{ transform: `scale(${a === i ? 1 : 0.92})` }}>
+              <Image src={img(p.img)} alt={p.name} fill sizes="150px" className={`object-cover transition-[filter] duration-500 ${a === i ? "grayscale-0" : "grayscale"}`} />
             </button>
           ))}
         </div>
       </div>
       <div className="mt-6 flex justify-center gap-2">
         {([-1, 1] as const).map((d) => (
-          <button key={d} aria-label={d < 0 ? "Previous" : "Next"} onClick={() => go(d)} className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/30 transition-colors hover:bg-ink hover:[&_path]:stroke-white">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none" style={{ transform: d < 0 ? "scaleX(-1)" : undefined }}><path d="M0 4h9M6 1l3 3-3 3" stroke="#1d2228" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <button key={d} aria-label={d < 0 ? "Previous" : "Next"} onClick={() => go(d)} className="group flex h-10 w-10 items-center justify-center rounded-full border border-ink transition-colors duration-300 hover:bg-ink">
+            <svg width="12" height="10" viewBox="0 0 10 8" fill="none" className="transition-[filter] duration-300 group-hover:invert" style={{ transform: d < 0 ? "scaleX(-1)" : undefined }}><path d="M0 4h9M6 1l3 3-3 3" stroke="#1d2228" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         ))}
       </div>

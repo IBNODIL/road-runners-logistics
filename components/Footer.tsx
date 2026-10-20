@@ -70,18 +70,19 @@ export default function Footer() {
         <div className="mt-[90px] flex items-center gap-5 text-[16px]">
           <span>© 2026 Road Runners Logistics SIA. All rights reserved.</span>
           <span className="h-4 w-px bg-white/15" />
-          <Link href="/contact" className="opacity-80 hover:opacity-100">Privacy</Link>
         </div>
       </div>
 
-      <div className="overflow-hidden border-t border-white/10 py-10">
-        <div className="marquee flex w-max items-center gap-16 whitespace-nowrap">
+      <div className="overflow-hidden pb-[90px] pt-[60px] max-[809px]:pb-12 max-[809px]:pt-8">
+        <div className="marquee flex w-max items-center whitespace-nowrap text-white/50">
           {Array.from({ length: 2 }).map((_, k) => (
-            <div key={k} className="flex items-center gap-16" aria-hidden={k === 1}>
+            <div key={k} className="flex items-center" aria-hidden={k === 1}>
               {["Trust", "Speed", "Deliver"].map((w) => (
-                <span key={w} className="flex items-center gap-16">
+                <span key={w} className="flex items-center">
                   <span className="h-mega">{w}</span>
-                  <span className="h-3 w-3 rounded-full bg-brand" />
+                  <svg className="mx-[66px] h-[96px] w-[96px] shrink-0 max-[809px]:mx-6 max-[809px]:h-10 max-[809px]:w-10" viewBox="0 0 96 96" fill="currentColor">
+                    <path d="M48 0c3 26 22 45 48 48-26 3-45 22-48 48-3-26-22-45-48-48C26 45 45 26 48 0z" />
+                  </svg>
                 </span>
               ))}
             </div>

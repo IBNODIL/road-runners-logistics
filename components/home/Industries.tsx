@@ -29,7 +29,7 @@ export function IndustriesSlider() {
     const on = () => {
       const small = window.innerWidth < 810;
       // header (76) + title (~120) + paddings — what's left is the card square
-      const avail = window.innerHeight - (small ? 260 : 300);
+      const avail = window.innerHeight - (small ? 330 : 370);
       setSize(Math.round(Math.max(280, Math.min(small ? 320 : 600, avail))));
       setGap(small ? 24 : 102);
     };
@@ -43,6 +43,7 @@ export function IndustriesSlider() {
   const titleO = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
   const cardsY = useTransform(scrollYProgress, [0.28, 0.5], [260, 0]);
   const cardsO = useTransform(scrollYProgress, [0.28, 0.45], [0, 1]);
+  const arrowsO = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
   const pitch = size + gap;
 
   return (
@@ -75,23 +76,17 @@ export function IndustriesSlider() {
                     </span>
                   </motion.div>
                 </Link>
-                {active && (
-                  <>
-                    {(["l", "r"] as const).map((dir) => (
-                      <button
-                        key={dir}
-                        aria-label={dir === "l" ? "Previous" : "Next"}
-                        onClick={(e) => { e.stopPropagation(); go(dir === "l" ? -1 : 1); }}
-                        className={`absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-transform hover:scale-110 ${dir === "l" ? "left-4" : "right-4"}`}
-                      >
-                        <Arrow dir={dir} />
-                      </button>
-                    ))}
-                  </>
-                )}
               </motion.div>
             );
           })}
+        </motion.div>
+        {/* arrows sit centred under the card row */}
+        <motion.div style={{ opacity: arrowsO }} className="mt-6 flex justify-center gap-[10px] max-[1000px]:!opacity-100">
+          {(["l", "r"] as const).map((dir) => (
+            <button key={dir} aria-label={dir === "l" ? "Previous" : "Next"} onClick={() => go(dir === "l" ? -1 : 1)} className="group flex h-10 w-10 items-center justify-center rounded-full border border-ink transition-colors duration-300 hover:bg-ink">
+              <span className="transition-[filter] duration-300 group-hover:invert"><Arrow dir={dir} /></span>
+            </button>
+          ))}
         </motion.div>
       </div>
     </section>

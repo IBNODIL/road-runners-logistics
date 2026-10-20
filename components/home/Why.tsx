@@ -79,6 +79,10 @@ export function ServicesGrid() {
               <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{ background: "linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 49.8%, rgba(0,0,0,.6) 100%)" }} />
               {/* grey card rises like a curtain, uncovering the photo from the bottom */}
               <div className="absolute inset-0 bg-mist transition-transform duration-[800ms] ease-[cubic-bezier(.65,0,.35,1)] group-hover:-translate-y-full" />
+              {/* navigation arrow, only visible on hover */}
+              <svg aria-hidden width="34" height="34" viewBox="0 0 34 34" fill="none" className="absolute right-8 top-8 z-10 -translate-x-2 translate-y-2 text-white opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100">
+                <path d="M6 28 28 6M10 6h18v18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-paper">
                 <Icon k={s.icon} />
               </div>

@@ -29,21 +29,22 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20" />
 
       <div className="wrap absolute inset-0">
-        <h1 className="h-hero absolute bottom-[345px] left-[var(--pad)] w-[602px] max-w-[calc(100%-var(--pad)*2)] max-[1199px]:bottom-[300px] max-[809px]:bottom-[250px]" aria-label="Reliable freight transport">
-          <SplitLetters text="Reliable" delay={0.2} />
-          <br />
-          <SplitLetters text="Freight" delay={0.45} />
-          <br />
-          <SplitLetters text="Transport" delay={0.7} />
-        </h1>
-
-        <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.1, ease }} className="p20 absolute bottom-[170px] left-[var(--pad)] w-[439px] max-w-[calc(100%-var(--pad)*2)] max-[809px]:bottom-[120px]">
-          Trucking services that keep your business moving forward with confidence.
-        </motion.p>
-
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.3, ease }} className="absolute bottom-12 left-[var(--pad)] max-[809px]:bottom-8">
-          <Button href="/request-a-quote">Request a Quote</Button>
-        </motion.div>
+        {/* text group: heading, copy and button stacked at the bottom-left */}
+        <div className="absolute bottom-12 left-[var(--pad)] flex max-w-[calc(100%-var(--pad)*2)] flex-col items-start max-[809px]:bottom-8">
+          <h1 className="h-hero w-[640px] max-w-full" aria-label="Reliable freight transport">
+            <SplitLetters text="Reliable" delay={0.2} />
+            <br />
+            <SplitLetters text="Freight" delay={0.45} />
+            <br />
+            <SplitLetters text="Transport" delay={0.7} />
+          </h1>
+          <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.1, ease }} className="p20 mt-[52px] w-[480px] max-w-full max-[809px]:mt-6">
+            Trucking services that keep your business moving forward with confidence.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.3, ease }} className="mt-[44px] max-[809px]:mt-6">
+            <Button href="/request-a-quote">Request a Quote</Button>
+          </motion.div>
+        </div>
 
         <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 1.2, ease }} className="absolute bottom-12 right-[var(--pad)] flex h-[212px] items-stretch gap-2 max-[1000px]:hidden">
           <div className="relative w-[183px] overflow-hidden rounded-lg">

@@ -24,15 +24,21 @@ export function Process() {
             <SplitWords as="h2" className="h2 w-[455px] max-w-full" text="From Request to Delivery — It's All Simple." />
             <div className="mt-10"><Button href="/request-a-quote">Request a Quote</Button></div>
           </div>
-          <div className="mt-24 flex flex-col gap-12 max-[1000px]:mt-0">
+          <div className="mt-24 flex flex-col gap-10 max-[1000px]:mt-12">
             {steps.map((s, i) => (
-              <motion.button key={s.t} onClick={() => setA(i)} animate={{ opacity: a === i ? 1 : 0.35 }} transition={{ duration: 0.5 }} className="grid grid-cols-[117px_1fr] text-left max-[600px]:grid-cols-[70px_1fr]">
-                <span>( 0{i + 1} )</span>
+              <motion.button
+                key={s.t}
+                onClick={() => setA(i)}
+                aria-pressed={a === i}
+                animate={{ opacity: a === i ? 1 : 0.38 }}
+                whileHover={{ opacity: a === i ? 1 : 0.75 }}
+                transition={{ duration: 0.4 }}
+                className="grid cursor-pointer grid-cols-[137px_1fr] text-left max-[600px]:grid-cols-[84px_1fr]"
+              >
+                <span className="p20 pt-2">( 0{i + 1} )</span>
                 <span>
-                  <span className="h6 block">{s.t}</span>
-                  <motion.span initial={false} animate={{ height: a === i ? "auto" : 0, opacity: a === i ? 1 : 0, marginTop: a === i ? 14 : 0 }} transition={{ duration: 0.5, ease }} className="block max-w-[425px] overflow-hidden">
-                    {s.d}
-                  </motion.span>
+                  <span className="h5 block">{s.t}</span>
+                  <span className="p20 mt-3 block max-w-[470px]">{s.d}</span>
                 </span>
               </motion.button>
             ))}
