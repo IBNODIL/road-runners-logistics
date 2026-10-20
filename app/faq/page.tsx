@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "FAQ - Road Runners Logistics SIA" };
 export default function FaqPage() {
   return (
     <>
-      <section className="px-[var(--pad)] pb-[100px] pt-[325px] max-[809px]:pt-[140px]">
+      <section data-hero-light className="px-[var(--pad)] pb-[100px] pt-[325px] max-[809px]:pt-[140px]">
         <div className="grid grid-cols-[1fr_380px] gap-16 max-[1000px]:grid-cols-1">
           <div>
             <SplitWords as="h1" className="h-hero max-w-[860px]" text="Questions? We've Got Answers." stagger={0.08} />

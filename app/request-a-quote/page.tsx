@@ -24,7 +24,7 @@ const steps = [
 export default function RequestAQuote() {
   return (
     <>
-      <section className="px-[var(--pad)] pb-[100px] pt-[250px] max-[809px]:pt-[130px]">
+      <section data-hero-light className="px-[var(--pad)] pb-[100px] pt-[250px] max-[809px]:pt-[130px]">
         <div className="grid grid-cols-[1fr_611px] gap-16 max-[1100px]:grid-cols-1">
           <div>
             <SplitWords as="h1" className="h-hero" text="Request a Quote" stagger={0.08} />

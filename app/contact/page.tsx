@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Contact - Road Runners Logistics SIA
 export default function Contact() {
   return (
     <>
-      <section className="px-[var(--pad)] pb-[100px] pt-[250px] max-[809px]:pt-[130px]">
+      <section data-hero-light className="px-[var(--pad)] pb-[100px] pt-[250px] max-[809px]:pt-[130px]">
         <div className="grid grid-cols-[586px_659px] justify-between gap-16 max-[1300px]:grid-cols-1">
           <div>
             <SplitWords as="h1" className="h-hero" text="Let's Talk Logistics." stagger={0.08} />

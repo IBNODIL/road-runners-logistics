@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import Button from "./Button";
 import { Counter, FadeLetters, Reveal, SplitLetters, SplitWords, ease } from "./motion";
 import { img } from "@/lib/site";
+import { Icon } from "./home/Why";
 
 /** Full-bleed hero used by every inner page. */
 export function PageHero({ title, text, image, cta, align = "bottom", tall, textBelow, lift, textRight, belowTitle, letterReveal, centered, dim, children }: { title: string; text?: string; image: string; cta?: boolean; align?: "top" | "bottom"; tall?: boolean; textBelow?: boolean; lift?: number; textRight?: boolean; belowTitle?: React.ReactNode; letterReveal?: boolean; centered?: boolean; dim?: boolean; children?: React.ReactNode }) {
@@ -95,11 +96,24 @@ export function FeatureGrid({ items, cols = 4, dark = false }: { items: { t: str
   );
 }
 
-export function CardGrid({ items, cols = 3, hrefPrefix, tall }: { items: { slug?: string; t: string; d?: string; img?: string }[]; cols?: 2 | 3; hrefPrefix?: string; tall?: boolean }) {
+export function CardGrid({ items, cols = 3, hrefPrefix, tall }: { items: { slug?: string; t: string; d?: string; img?: string; icon?: string }[]; cols?: 2 | 3; hrefPrefix?: string; tall?: boolean }) {
   return (
     <div className={`grid gap-6 ${cols === 3 ? "grid-cols-3 max-[1000px]:grid-cols-2 max-[600px]:grid-cols-1" : "grid-cols-2 max-[809px]:grid-cols-1"}`}>
       {items.map((s, i) => {
-        const body = (
+        const body = s.icon ? (
+          // photo always visible; on hover it only scales to 1.2 inside the box
+          <div className={`group relative flex flex-col justify-between overflow-hidden rounded-lg bg-ink p-8 text-white max-[809px]:h-[460px] ${tall ? "h-[650px]" : "h-[447px]"}`}>
+            {s.img && <Image src={img(s.img)} alt={s.t} fill sizes="660px" className="scale-100 object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.44,0,.56,1)] group-hover:scale-[1.2]" />}
+            <div className="absolute inset-0" style={{ background: "linear-gradient(rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,.65) 100%)" }} />
+            <div className="relative flex h-[94px] w-[94px] items-center justify-center rounded-full border border-white text-white">
+              <Icon k={s.icon} size={40} />
+            </div>
+            <div className="relative">
+              <h5 className="h5">{s.t}</h5>
+              {s.d && <p className="mt-4 max-w-[560px]">{s.d}</p>}
+            </div>
+          </div>
+        ) : (
           <div className={`group relative flex flex-col justify-end overflow-hidden rounded-lg bg-mist p-8 transition-colors duration-500 hover:text-white max-[809px]:h-[380px] ${tall ? "h-[650px]" : "h-[447px]"}`}>
             {s.img && <Image src={img(s.img)} alt={s.t} fill sizes="432px" className="object-cover" />}
             <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100" style={{ background: "linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,.6) 100%)" }} />

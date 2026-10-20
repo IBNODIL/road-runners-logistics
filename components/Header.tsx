@@ -18,6 +18,7 @@ export default function Header() {
   const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [lightHero, setLightHero] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -35,6 +36,8 @@ export default function Header() {
 
   useEffect(() => {
     setMobile(false);
+    // pages whose first section is a light background mark it with data-hero-light
+    setLightHero(!!document.querySelector("[data-hero-light]"));
     setOpen(null);
   }, [pathname]);
 
@@ -42,7 +45,7 @@ export default function Header() {
     document.body.style.overflow = mobile ? "hidden" : "";
   }, [mobile]);
 
-  const light = !solid && !mobile;
+  const light = !solid && !mobile && !lightHero;
 
   return (
     <header

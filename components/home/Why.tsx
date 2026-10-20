@@ -54,8 +54,8 @@ export function Why() {
   );
 }
 
-const Icon = ({ k }: { k: string }) => {
-  const p = { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "#dd6537", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" } as const;
+export const Icon = ({ k, size = 28 }: { k: string; size?: number }) => {
+  const p = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" } as const;
   switch (k) {
     case "truck": return <svg {...p}><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8M6 18a1.5 1.5 0 1 0 0 .01M17 18a1.5 1.5 0 1 0 0 .01" /></svg>;
     case "snow": return <svg {...p}><path d="M12 2v20M4 7l16 10M20 7 4 17" /></svg>;
@@ -84,7 +84,7 @@ export function ServicesGrid() {
                 <path d="M6 28 28 6M10 6h18v18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-paper">
-                <Icon k={s.icon} />
+                <span className="text-brand"><Icon k={s.icon} /></span>
               </div>
               <div className="relative">
                 <h5 className="h5">{s.title}</h5>
