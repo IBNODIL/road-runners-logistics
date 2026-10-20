@@ -21,7 +21,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 140 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease }}
-          className="absolute right-[var(--pad)] top-[373px] h-[600px] w-[729px] overflow-hidden rounded-lg max-[1000px]:static max-[1000px]:mt-10 max-[1000px]:h-[420px] max-[1000px]:w-full"
+          className="absolute right-[var(--pad)] top-[373px] h-[600px] w-[729px] overflow-hidden rounded-lg max-[1000px]:relative max-[1000px]:right-auto max-[1000px]:top-auto max-[1000px]:mt-10 max-[1000px]:h-[420px] max-[1000px]:w-full"
         >
           <Image src={img("w412NgzOWhJzJHxEHkzMfqTb1U.jpg")} alt="Logistics Built Around Your Business" fill priority sizes="729px" className="object-cover" />
         </motion.div>

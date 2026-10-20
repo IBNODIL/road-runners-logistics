@@ -44,7 +44,7 @@ export function Process() {
             ))}
           </div>
         </div>
-        <div className="sticky top-[100px] h-[825px] self-start overflow-hidden rounded-lg max-[1000px]:static max-[1000px]:h-[520px]">
+        <div className="sticky top-[100px] h-[825px] self-start overflow-hidden rounded-lg max-[1000px]:relative max-[1000px]:top-0 max-[1000px]:h-[520px]">
           <AnimatePresence initial={false}>
             <motion.div key={a} initial={{ clipPath: "inset(100% 0 0 0)", scale: 1.1 }} animate={{ clipPath: "inset(0% 0 0 0)", scale: 1 }} exit={{ opacity: 1 }} transition={{ duration: 1, ease }} className="absolute inset-0">
               <Image src={img(steps[a].img)} alt={steps[a].t} fill sizes="708px" className="object-cover" />

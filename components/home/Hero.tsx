@@ -28,7 +28,7 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ background: "linear-gradient(56deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,0) 50.3%, rgba(0,0,0,.24) 100%)" }} />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20" />
 
-      <div className="wrap absolute inset-0">
+      <div className="wrap absolute inset-0 z-10">
         {/* text group: heading, copy and button stacked at the bottom-left */}
         <div className="absolute bottom-12 left-[var(--pad)] flex max-w-[calc(100%-var(--pad)*2)] flex-col items-start max-[809px]:bottom-8">
           <h1 className="h-hero w-[640px] max-w-full" aria-label="Reliable freight transport">
