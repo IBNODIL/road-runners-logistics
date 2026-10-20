@@ -40,6 +40,30 @@ export function SplitLetters({ text, className = "", delay = 0, stagger = 0.03, 
   );
 }
 
+
+/** Letters appear one after another in place (opacity only), like a typed reveal. */
+export function FadeLetters({ text, className = "", delay = 0.3, stagger = 0.07, as = "span" }: { text: string; className?: string; delay?: number; stagger?: number; as?: "span" | "h1" | "h2" }) {
+  const M = motion[as] as ElementType;
+  let n = 0;
+  return (
+    <M className={className} aria-label={text}>
+      {text.split(" ").map((w, wi, a) => (
+        <span key={wi} className="inline-block whitespace-nowrap" aria-hidden>
+          {[...w].map((c, ci) => {
+            const i = n++;
+            return (
+              <motion.span key={ci} className="inline-block" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.55, delay: delay + i * stagger, ease: "easeOut" }}>
+                {c}
+              </motion.span>
+            );
+          })}
+          {wi < a.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </M>
+  );
+}
+
 /** Per-word reveal for body headings. */
 export function SplitWords({ text, className = "", delay = 0, as = "div", stagger = 0.04 }: { text: string; className?: string; delay?: number; as?: "div" | "h1" | "h2" | "h3" | "p"; stagger?: number }) {
   const ref = useRef<HTMLElement>(null);

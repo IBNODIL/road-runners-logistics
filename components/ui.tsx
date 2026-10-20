@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import Button from "./Button";
-import { Counter, Reveal, SplitLetters, SplitWords, ease } from "./motion";
+import { Counter, FadeLetters, Reveal, SplitLetters, SplitWords, ease } from "./motion";
 import { img } from "@/lib/site";
 
 /** Full-bleed hero used by every inner page. */
-export function PageHero({ title, text, image, cta, align = "bottom", tall, textBelow, children }: { title: string; text?: string; image: string; cta?: boolean; align?: "top" | "bottom"; tall?: boolean; textBelow?: boolean; children?: React.ReactNode }) {
+export function PageHero({ title, text, image, cta, align = "bottom", tall, textBelow, lift, textRight, belowTitle, letterReveal, centered, dim, children }: { title: string; text?: string; image: string; cta?: boolean; align?: "top" | "bottom"; tall?: boolean; textBelow?: boolean; lift?: number; textRight?: boolean; belowTitle?: React.ReactNode; letterReveal?: boolean; centered?: boolean; dim?: boolean; children?: React.ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
@@ -19,16 +19,18 @@ export function PageHero({ title, text, image, cta, align = "bottom", tall, text
         <Image src={img(image)} alt={title} fill priority sizes="100vw" className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/55" />
-      <div className={`absolute inset-x-0 flex items-end justify-between gap-10 px-[var(--pad)] max-[1000px]:flex-col max-[1000px]:items-start max-[1000px]:gap-6 ${align === "top" ? "top-[250px] max-[1000px]:top-[170px]" : "bottom-0 pb-12"}`}>
+      {dim && <div className="absolute inset-0 bg-black/30" />}
+      <div style={lift !== undefined ? { bottom: lift } : undefined} className={`absolute inset-x-0 flex items-end justify-between gap-10 px-[var(--pad)] max-[1000px]:flex-col max-[1000px]:items-start max-[1000px]:gap-6 ${centered ? "top-1/2 -translate-y-[48%] max-[1000px]:top-[40%]" : align === "top" ? "top-[250px] max-[1000px]:top-[170px]" : lift !== undefined ? "" : "bottom-0 pb-12"}`}>
         <div>
-          <SplitWords as="h1" className="h-hero max-w-[760px]" text={title} delay={0.2} stagger={0.08} />
+          {letterReveal ? <FadeLetters as="h1" className="h-hero max-w-[760px]" text={title} delay={0.3} stagger={0.07} /> : <SplitWords as="h1" className="h-hero max-w-[760px]" text={title} delay={0.2} stagger={0.08} />}
+          {belowTitle}
           {textBelow && text && (
             <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease }} className="p20 mt-8 max-w-[779px]">{text}</motion.p>
           )}
         </div>
         {(!textBelow && (text || cta)) && (
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease }} className="w-[463px] max-w-full">
-            {text && <p className="p20">{text}</p>}
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease }} className={`w-[463px] max-w-full ${textRight ? "text-right max-[1000px]:text-left" : ""}`}>
+            {text && <p className="p20 whitespace-pre-line">{text}</p>}
             {cta && <div className="mt-8"><Button href="/request-a-quote">Request a Quote</Button></div>}
           </motion.div>
         )}

@@ -6,7 +6,7 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ lerp: 0.06, wheelMultiplier: 0.6, touchMultiplier: 1, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.06, wheelMultiplier: 0.6, touchMultiplier: 1, smoothWheel: true, anchors: { offset: -100 } });
     let raf = 0;
     const loop = (t: number) => {
       lenis.raf(t);
