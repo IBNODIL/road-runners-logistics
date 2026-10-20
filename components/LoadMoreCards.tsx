@@ -5,11 +5,11 @@ import { CardGrid } from "./ui";
 type Item = { slug?: string; t: string; d?: string; img?: string; icon?: string };
 
 /** Card grid that shows the first few items and reveals the rest on "Load More". */
-export default function LoadMoreCards({ items, initial, cols, hrefPrefix, tall }: { items: Item[]; initial: number; cols: 2 | 3; hrefPrefix: string; tall?: boolean }) {
+export default function LoadMoreCards({ items, initial, cols, hrefPrefix, tall, photo }: { items: Item[]; initial: number; cols: 2 | 3; hrefPrefix: string; tall?: boolean; photo?: boolean }) {
   const [shown, setShown] = useState(initial);
   return (
     <div>
-      <CardGrid cols={cols} hrefPrefix={hrefPrefix} tall={tall} items={items.slice(0, shown)} />
+      <CardGrid cols={cols} hrefPrefix={hrefPrefix} tall={tall} photo={photo} items={items.slice(0, shown)} />
       {shown < items.length && (
         <div className="mt-12 flex justify-center">
           <button onClick={() => setShown(items.length)} className="group label relative pb-1 text-[18px]">

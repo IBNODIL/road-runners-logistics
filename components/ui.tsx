@@ -9,7 +9,7 @@ import { img } from "@/lib/site";
 import { Icon } from "./home/Why";
 
 /** Full-bleed hero used by every inner page. */
-export function PageHero({ title, text, image, cta, align = "bottom", tall, textBelow, lift, textRight, belowTitle, letterReveal, centered, dim, children }: { title: string; text?: string; image: string; cta?: boolean; align?: "top" | "bottom"; tall?: boolean; textBelow?: boolean; lift?: number; textRight?: boolean; belowTitle?: React.ReactNode; letterReveal?: boolean; centered?: boolean; dim?: boolean; children?: React.ReactNode }) {
+export function PageHero({ title, text, image, cta, align = "bottom", tall, textBelow, lift, textRight, belowTitle, letterReveal, centered, dim, textMid, children }: { title: string; text?: string; image: string; cta?: boolean; align?: "top" | "bottom"; tall?: boolean; textBelow?: boolean; lift?: number; textRight?: boolean; belowTitle?: React.ReactNode; letterReveal?: boolean; centered?: boolean; dim?: boolean; textMid?: boolean; children?: React.ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
@@ -29,7 +29,7 @@ export function PageHero({ title, text, image, cta, align = "bottom", tall, text
             <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease }} className="p20 mt-8 max-w-[779px]">{text}</motion.p>
           )}
         </div>
-        {(!textBelow && (text || cta)) && (
+        {(!textBelow && !textMid && (text || cta)) && (
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease }} className={`w-[463px] max-w-full ${textRight ? "text-right max-[1000px]:text-left" : ""}`}>
             {text && <p className="p20 whitespace-pre-line">{text}</p>}
             {cta && <div className="mt-8"><Button href="/request-a-quote">Request a Quote</Button></div>}
@@ -37,6 +37,11 @@ export function PageHero({ title, text, image, cta, align = "bottom", tall, text
         )}
         {children}
       </div>
+      {textMid && text && (
+        <motion.p initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.9, ease }} className="p20 absolute right-[var(--pad)] top-1/2 w-[463px] max-w-[calc(100%-var(--pad)*2)] -translate-y-1/2 text-right max-[1000px]:top-[38%] max-[1000px]:w-[70%] max-[809px]:text-[17px]">
+          {text}
+        </motion.p>
+      )}
     </section>
   );
 }
@@ -96,11 +101,22 @@ export function FeatureGrid({ items, cols = 4, dark = false }: { items: { t: str
   );
 }
 
-export function CardGrid({ items, cols = 3, hrefPrefix, tall }: { items: { slug?: string; t: string; d?: string; img?: string; icon?: string }[]; cols?: 2 | 3; hrefPrefix?: string; tall?: boolean }) {
+export function CardGrid({ items, cols = 3, hrefPrefix, tall, photo }: { items: { slug?: string; t: string; d?: string; img?: string; icon?: string }[]; cols?: 2 | 3; hrefPrefix?: string; tall?: boolean; photo?: boolean }) {
   return (
     <div className={`grid gap-6 ${cols === 3 ? "grid-cols-3 max-[1000px]:grid-cols-2 max-[600px]:grid-cols-1" : "grid-cols-2 max-[809px]:grid-cols-1"}`}>
       {items.map((s, i) => {
-        const body = s.icon ? (
+        const body = photo && s.img ? (
+          // tall photo card, title top-left, photo scales to 1.2 on hover
+          <div className="group relative aspect-[580/600] overflow-hidden rounded-lg bg-ink text-white">
+            <Image src={img(s.img)} alt={s.t} fill sizes="580px" className="scale-100 object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.44,0,.56,1)] group-hover:scale-[1.2]" />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,0) 40%)" }} />
+            <h6 className="h6 absolute left-8 top-8 max-[809px]:left-5 max-[809px]:top-5">{s.t}</h6>
+            {/* arrow button, only visible on hover */}
+            <span className="absolute bottom-6 right-6 flex h-[50px] w-[50px] scale-75 items-center justify-center rounded-full bg-white text-ink opacity-0 transition-all duration-500 ease-[cubic-bezier(.44,0,.56,1)] group-hover:scale-100 group-hover:opacity-100">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M5.5 4H14v8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </span>
+          </div>
+        ) : s.icon ? (
           // photo always visible; on hover it only scales to 1.2 inside the box
           <div className={`group relative flex flex-col justify-between overflow-hidden rounded-lg bg-ink p-8 text-white max-[809px]:h-[460px] ${tall ? "h-[650px]" : "h-[447px]"}`}>
             {s.img && <Image src={img(s.img)} alt={s.t} fill sizes="660px" className="scale-100 object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.44,0,.56,1)] group-hover:scale-[1.2]" />}
