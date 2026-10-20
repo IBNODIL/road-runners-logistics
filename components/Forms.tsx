@@ -177,9 +177,9 @@ export function CompactQuoteForm() {
   const { sent, setSent, submit } = useSubmit();
   const f = useForm({ resolver: zodResolver(compactQuoteSchema), mode: "onTouched" });
   if (sent) return <Success title="Quote request received" onReset={() => { f.reset(); setSent(false); }} />;
-  const { register, formState: { errors, isSubmitting } } = f;
+  const { register, formState: { errors, isSubmitting, isValid } } = f;
   return (
-    <form noValidate onSubmit={f.handleSubmit(submit)} className="grid grid-cols-2 gap-x-6 max-[600px]:grid-cols-1">
+    <form noValidate onSubmit={f.handleSubmit(submit)} className="line-form grid grid-cols-2 gap-x-6 max-[600px]:grid-cols-1">
       <TextField id="name" label="Full name" ph="Jordan Blake" register={register} errors={errors} />
       <TextField id="company" label="Company" ph="Acme Manufacturing" register={register} errors={errors} />
       <TextField id="email" label="Email" ph="jordan@company.com" type="email" register={register} errors={errors} />
@@ -187,7 +187,9 @@ export function CompactQuoteForm() {
       <SelectField register={register} errors={errors} />
       <TextField id="timeline" label="Preferred timeline" ph="e.g. Within 2 weeks" register={register} errors={errors} />
       <div className="col-span-2 max-[600px]:col-span-1"><Area id="details" label="Cargo details" ph="Cargo type..." register={register} errors={errors} /></div>
-      <div className="col-span-2 mt-2 max-[600px]:col-span-1"><Submit busy={isSubmitting}>Request a Quote</Submit></div>
+      <button type="submit" disabled={!isValid || isSubmitting} className={`label col-span-2 mt-4 w-full rounded-lg px-5 py-[18px] text-white transition-colors duration-300 max-[600px]:col-span-1 ${isValid ? "cursor-pointer bg-brand hover:bg-ink" : "cursor-not-allowed bg-brand/50"}`}>
+        {isSubmitting ? "Sending…" : "Request a Quote"}
+      </button>
     </form>
   );
 }
